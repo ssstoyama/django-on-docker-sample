@@ -10,11 +10,8 @@ COPY requirements.txt .
 RUN apk update \
     && apk add --virtual build-deps gcc python3-dev musl-dev \
     && apk add postgresql-dev \
-    && pip install psycopg2 \
+    && pip install -r requirements.txt --no-cache-dir \
     && apk del build-deps
-
-RUN pip install --upgrade pip \
- && pip install -r requirements.txt --no-cache-dir
 
 COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 
