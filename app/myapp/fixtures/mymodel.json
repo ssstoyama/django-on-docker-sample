@@ -1,0 +1,26 @@
+[
+    {
+        "model": "myapp.mymodel",
+        "pk": 1,
+        "fields": {
+          "number": 8000,
+          "name": "Django"
+        }
+    },
+    {
+        "model": "myapp.mymodel",
+        "pk": 2,
+        "fields": {
+          "number": 80,
+          "name": "Nginx"
+        }
+    },
+    {
+        "model": "myapp.mymodel",
+        "pk": 3,
+        "fields": {
+          "number": 5432,
+          "name": "Postgres"
+        }
+    }
+]
