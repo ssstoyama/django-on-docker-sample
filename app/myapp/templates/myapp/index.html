@@ -1,2 +1,7 @@
 <h1>MyApp</h1>
 <p>Indexページ</p>
+<ul>
+{% for model in models %}
+    <li>No.{{ model.number }} {{ model.name }}</li>
+{% endfor %}
+</ul>
