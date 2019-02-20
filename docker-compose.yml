@@ -26,6 +26,7 @@ services:
       - SQL_HOST=db
       - SQL_PORT=5432
       - DATABASE=postgres
+      - DJANGO_DEBUG=False
     depends_on:
       - db
   db:
