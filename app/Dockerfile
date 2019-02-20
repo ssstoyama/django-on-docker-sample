@@ -13,8 +13,6 @@ RUN apk update \
     && pip install -r requirements.txt --no-cache-dir \
     && apk del build-deps
 
-COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
-
 COPY . /usr/src/app/
 
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
