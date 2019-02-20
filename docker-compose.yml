@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/usr/src/app/static
+    ports:
+      - 80:80
+    depends_on:
+      - web
+  web:
+    build: ./app
+    command: ash -c "sh /usr/src/app/entrypoint.sh && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - ./app/:/usr/src/app/
+      - static_volume:/usr/src/app/static
+    expose:
+      - 8000
+    environment:
+      - SECRET_KEY=your_sercret_key
+      - SQL_ENGINE=django.db.backends.postgresql
+      - SQL_DATABASE=django-db
+      - SQL_USER=django-user
+      - SQL_PASSWORD=password
+      - SQL_HOST=db
+      - SQL_PORT=5432
+      - DATABASE=postgres
+    depends_on:
+      - db
+  db:
+    build: ./db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=django-db
+      - POSTGRES_USER=django-user
+      - POSTGRES_PASSWORD=password
+volumes:
+  postgres_data:
+  static_volume:
