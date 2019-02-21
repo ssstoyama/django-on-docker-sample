@@ -1,3 +1,4 @@
 */.git
 myenv
 */__pycache__
+*/local_settings.py

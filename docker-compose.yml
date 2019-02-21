@@ -11,7 +11,7 @@ services:
       - web
   web:
     build: ./app
-    command: ash -c "sh /usr/src/app/entrypoint.sh && gunicorn myproject.wsgi:application --bind 0.0.0.0:8000"
+    command: gunicorn myproject.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/usr/src/app/static
     expose:
@@ -25,7 +25,7 @@ services:
       - SQL_HOST=db
       - SQL_PORT=5432
       - DATABASE=postgres
-      - DJANGO_DEBUG=True
+      - DJANGO_DEBUG=False
     depends_on:
       - db
   db:
