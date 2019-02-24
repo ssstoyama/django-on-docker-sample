@@ -16,15 +16,15 @@ services:
       - static_volume:/usr/src/app/static
     expose:
       - 8000
-    environment:
-      - SECRET_KEY=your_sercret_key
-      - SQL_ENGINE=django.db.backends.postgresql
-      - SQL_DATABASE=django-db
-      - SQL_USER=django-user
-      - SQL_PASSWORD=password
-      - SQL_HOST=db
-      - SQL_PORT=5432
-      - DATABASE=postgres
+    # environment:
+      # - SECRET_KEY=your_sercret_key
+      # - SQL_ENGINE=django.db.backends.postgresql
+      # - SQL_DATABASE=django-db
+      # - SQL_USER=django-user
+      # - SQL_PASSWORD=password
+      # - SQL_HOST=db
+      # - SQL_PORT=5432
+      # - DATABASE=postgres
     depends_on:
       - db
   db:
