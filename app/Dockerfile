@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY requirements.txt .
 
 RUN apk update \
-    && apk add --virtual build-deps gcc python3-dev musl-dev shadow \
+    && apk add --no-cache --virtual build-deps gcc python3-dev musl-dev shadow \
     && apk add postgresql-dev \
     && pip install -r requirements.txt --no-cache-dir
 
