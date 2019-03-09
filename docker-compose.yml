@@ -4,7 +4,7 @@ services:
   nginx:
     build: ./nginx
     volumes:
-      - static_volume:/usr/src/app/static
+      - static_volume:/usr/src/app/static:ro
     ports:
       - 80:8080
     depends_on:
@@ -12,14 +12,29 @@ services:
   web:
     build: ./app
     command: gunicorn myproject.wsgi:application --bind 0.0.0.0:8000
-    volumes:
-      - static_volume:/usr/src/app/static
+    environment:
+     - SECRET_KEY=SECRET_KEY
+     - SQL_ENGINE=${SQL_ENGINE}
+     - SQL_DATABASE=${DATABASE_NAME}
+     - SQL_USER=${DATABASE_USER}
+     - SQL_PASSWORD=${DATABASE_PASSWORD}
+     - SQL_HOST=db
+     - SQL_PORT=5432
+     - DATABASE=${DATABASE}
     expose:
       - 8000
+    volumes:
+      - static_volume:/usr/src/app/static:ro
     depends_on:
       - db
   db:
     build: ./db
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    expose:
+      - 5432
     volumes:
       - postgres_data:/var/lib/postgresql/data/
 volumes:
