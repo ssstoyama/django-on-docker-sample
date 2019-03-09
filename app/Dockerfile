@@ -16,7 +16,6 @@ RUN apk update \
  && apk del build-deps
 
 COPY --chown=django:django . /usr/src/app/
-RUN chown -R django:django /usr/src/app/
 
 USER django
 
