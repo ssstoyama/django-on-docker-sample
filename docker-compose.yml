@@ -13,7 +13,7 @@ services:
     build: ./app
     command: gunicorn myproject.wsgi:application --bind 0.0.0.0:8000
     environment:
-     - SECRET_KEY=SECRET_KEY
+     - SECRET_KEY=${SECRET_KEY}
      - SQL_ENGINE=${SQL_ENGINE}
      - SQL_DATABASE=${DATABASE_NAME}
      - SQL_USER=${DATABASE_USER}
